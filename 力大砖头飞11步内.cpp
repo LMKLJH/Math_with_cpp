@@ -222,12 +222,7 @@ void TMS(int direction)
 		MS[1][1] = t2;
 		  	  
     }
-    
-    
-    
       
-    
-    
 }
 
 
@@ -245,7 +240,6 @@ double cpu_time()//计算运行时间使用的函数
         return 0;
     }
 }
-
 
 
 string r(int n)//定义把编号转换为魔方公式的函数 
@@ -301,7 +295,7 @@ int main()
   
   
    char MS1[4][6];
-    memcpy(MS1, MS, sizeof(char) * 4 * 6);
+    memcpy(MS1, MS, sizeof(char) * 4 * 6);// 复制一份 MS 数组内容到 MS1 数组中
 
 
 int p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;	
@@ -320,8 +314,14 @@ int p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
 			  	   	    for(p7=0;p7<9;p7++)
 			  	   	    {
 			  	   	    	for(p8=0;p8<9;p8++)
-			  	   	    	{                        
-										    memcpy(MS, MS1, sizeof(char) * 4 * 6);
+			  	   	    	{        
+								for(p9=0;p9<9;p9++)             
+								{
+									for(p10=0;p10<9;p10++)
+									{
+										for(p11=0;p11<9;p11++)
+										{
+										   memcpy(MS, MS1, sizeof(char) * 4 * 6);
 
 										    TMS(p1);
 			  	   	    					
@@ -338,10 +338,21 @@ int p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
 			  	   	    					TMS(p7);
                                                   	  	   	    					
 			  	   	    					TMS(p8);
-			  	   	    				    if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break; 
-											
-									
-							 }
+			  	   	    					
+			  	   	    					TMS(p9);
+			  	   	    					
+			  	   	    					TMS(p10);
+			  	   	    					
+			  	   	    					TMS(p11);
+			  	   	    					
+			  	   	    				    if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;// 比较两个数组内容是否相同 
+								        }
+								        if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;// 比较两个数组内容是否相同
+							        }
+							        if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
+						        }
+							  if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;	
+							}
 							if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
 						}
 						if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
@@ -350,18 +361,17 @@ int p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
 				}
 				if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
 			}
+			cout<<"运行进度"<<(p1*81+p2*9+p3+1.0)*100/729<<"%"<<endl;    //显示运行进度 
 			if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
 		}
 		if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
 	}
-	cout<<(p1+1)*100/9<<"%"<<endl;
 	if (memcmp(MS0, MS, sizeof(char) * 4 * 6) == 0) break;
   }
 
-  cout<<r(p1)<<r(p2)<<r(p3)<<r(p4)<<r(p5)<<r(p6)<<r(p7)<<r(p8)<<endl;//编码转换为魔方公式输出 
-
+  cout<<r(p1)<<r(p2)<<r(p3)<<r(p4)<<r(p5)<<r(p6)<<r(p7)<<r(p8)<<r(p9)<<r(p10)<<r(p11)<<endl;//编码转换为魔方公式输出 
 	
-	double end = cpu_time();
+	double end = cpu_time();//结束计时 
     double elapsed = end - begin;
     printf("消耗时间: %.3f 秒.\n", elapsed); 
     return 0;
